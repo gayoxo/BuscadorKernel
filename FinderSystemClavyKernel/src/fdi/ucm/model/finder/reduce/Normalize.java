@@ -24,9 +24,12 @@ public class Normalize {
 	
 	norma(entrada,Salida);
 
+	if (Salida.isEmpty())
+		return null;
+	
 	Gson gson = new Gson();
     String jsonString = gson.toJson(Salida);
-    System.out.println("JSON: " + jsonString);      
+   // System.out.println("JSON: " + jsonString);      
 	return jsonString;	
 	}
 
@@ -77,21 +80,22 @@ public class Normalize {
 				E.getPartesEcuacion().add(T);
 				entrada.add(E);
 				return entrada;
-			}else if (formulaIn instanceof FormulaNOT)
+			}else if (ActN instanceof FormulaNOT)
 			{
-				norma(ActN, entrada);
+				FormulaNOT ActInt2=(FormulaNOT)ActN;
+				norma(ActInt2.getFormula(), entrada);
 			}
-			else  if (formulaIn instanceof FormulaAND)
+			else  if (ActN instanceof FormulaAND)
 			{
-				FormulaAND ActInt=(FormulaAND)formulaIn;
+				FormulaAND ActInt=(FormulaAND)ActN;
 				FormulaNOT nueva1=new FormulaNOT(ActInt.getFormula1());
 				FormulaNOT nueva2=new FormulaNOT(ActInt.getFormula2());
 				norma(nueva1,entrada);
 				norma(nueva2,entrada);
 				
-			}else if (formulaIn instanceof FormulaOR)
+			}else if (ActN instanceof FormulaOR)
 			{
-				FormulaOR ActInt=(FormulaOR)formulaIn;
+				FormulaOR ActInt=(FormulaOR)ActN;
 				ArrayList<Ecuation> E1=new ArrayList<Ecuation>();
 				ArrayList<Ecuation> E2=new ArrayList<Ecuation>();
 				FormulaNOT nueva1=new FormulaNOT(ActInt.getFormula1());
@@ -126,6 +130,7 @@ public class Normalize {
 				for (EcuationTerm ecuation1Part : ecuation1.getPartesEcuacion()) {
 					for (EcuationTerm ecuation2Part : ecuation2.getPartesEcuacion()) {
 						EcuationTerm nuevo=new EcuationTerm();
+						nueva.getPartesEcuacion().add(nuevo);
 						for (ATerm term1 : ecuation1Part.getPTerm()) {
 							nuevo.getPTerm().add(term1);
 						}
@@ -140,6 +145,7 @@ public class Normalize {
 							if (!nuevo.getNTerm().contains(term2))
 								nuevo.getNTerm().add(term2);
 						}
+						
 					}
 				}
 				
