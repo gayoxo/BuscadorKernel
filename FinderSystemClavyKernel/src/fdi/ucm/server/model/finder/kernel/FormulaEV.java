@@ -1,35 +1,33 @@
+package fdi.ucm.server.model.finder.kernel;
 /**
  * 
  */
-package fdi.ucm.model.finder.result;
-
-import java.io.Serializable;
 
 /**
  * @author Joaquin Gayoso-Cabada
- * Termino Basico
+ * Formula Base
  */
-public class ATerm implements Serializable{
+public class FormulaEV extends Formula {
 
-
-	private static final long serialVersionUID = -3509372566712033447L;
+	private static final long serialVersionUID = 1631979871344616552L;
 	private Long Attribute;
 	private String Valor;
 	
-	public ATerm() {
+	public FormulaEV() {
 		Attribute=0l;
 		Valor="";
 	}
-
+	
 	/**
 	 * @param attribute
 	 * @param valor
 	 */
-	public ATerm(Long attribute, String valor) {
+	public FormulaEV(Long attribute, String valor) {
 		super();
 		Attribute = attribute;
 		Valor = valor;
 	}
+
 
 	/**
 	 * @return the attribute

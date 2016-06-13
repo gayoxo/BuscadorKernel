@@ -8,11 +8,12 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import fdi.ucm.model.finder.kernel.FormulaAND;
-import fdi.ucm.model.finder.kernel.FormulaEV;
-import fdi.ucm.model.finder.kernel.FormulaNOT;
-import fdi.ucm.model.finder.kernel.FormulaOR;
-import fdi.ucm.model.finder.reduce.Normalize;
+
+import fdi.ucm.server.model.finder.kernel.FormulaAND;
+import fdi.ucm.server.model.finder.kernel.FormulaEV;
+import fdi.ucm.server.model.finder.kernel.FormulaNOT;
+import fdi.ucm.server.model.finder.kernel.FormulaOR;
+import fdi.ucm.server.model.finder.reduce.Normalize;
 
 /**
  * @author Joaquin Gayoso-Cabada

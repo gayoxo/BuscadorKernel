@@ -1,4 +1,4 @@
-package fdi.ucm.model.finder.kernel;
+package fdi.ucm.server.model.finder.kernel;
 import java.io.Serializable;
 
 /**

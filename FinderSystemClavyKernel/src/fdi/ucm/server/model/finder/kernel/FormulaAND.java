@@ -1,20 +1,20 @@
 /**
  * 
  */
-package fdi.ucm.model.finder.kernel;
+package fdi.ucm.server.model.finder.kernel;
 
 /**
  * @author Joaquin Gayoso-Cabada
- * Formula AND
+ * Formula OR
  */
-public class FormulaOR extends Formula {
+public class FormulaAND extends Formula {
 
 
 	private static final long serialVersionUID = -953542119960452097L;
 	private Formula formula1;
 	private Formula formula2;
 	
-	public FormulaOR() {
+	public FormulaAND() {
 	}
 
 	
@@ -23,7 +23,7 @@ public class FormulaOR extends Formula {
 	 * @param formula1
 	 * @param formula2
 	 */
-	public FormulaOR(Formula formula1, Formula formula2) {
+	public FormulaAND(Formula formula1, Formula formula2) {
 		super();
 		this.formula1 = formula1;
 		this.formula2 = formula2;

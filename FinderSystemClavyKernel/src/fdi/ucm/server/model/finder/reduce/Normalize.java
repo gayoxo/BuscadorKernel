@@ -1,18 +1,18 @@
-package fdi.ucm.model.finder.reduce;
+package fdi.ucm.server.model.finder.reduce;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
 
-import fdi.ucm.model.finder.kernel.Formula;
-import fdi.ucm.model.finder.kernel.FormulaAND;
-import fdi.ucm.model.finder.kernel.FormulaEV;
-import fdi.ucm.model.finder.kernel.FormulaNOT;
-import fdi.ucm.model.finder.kernel.FormulaOR;
-import fdi.ucm.model.finder.result.ATerm;
-import fdi.ucm.model.finder.result.Ecuation;
-import fdi.ucm.model.finder.result.EcuationTerm;
+import fdi.ucm.server.model.finder.kernel.Formula;
+import fdi.ucm.server.model.finder.kernel.FormulaAND;
+import fdi.ucm.server.model.finder.kernel.FormulaEV;
+import fdi.ucm.server.model.finder.kernel.FormulaNOT;
+import fdi.ucm.server.model.finder.kernel.FormulaOR;
+import fdi.ucm.server.model.finder.result.ATerm;
+import fdi.ucm.server.model.finder.result.Ecuation;
+import fdi.ucm.server.model.finder.result.EcuationTerm;
 
 public class Normalize {
 

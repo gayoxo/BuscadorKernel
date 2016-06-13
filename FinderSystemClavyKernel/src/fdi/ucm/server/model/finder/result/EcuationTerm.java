@@ -1,4 +1,4 @@
-package fdi.ucm.model.finder.result;
+package fdi.ucm.server.model.finder.result;
 
 import java.io.Serializable;
 import java.util.ArrayList;
