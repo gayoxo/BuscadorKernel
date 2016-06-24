@@ -10,12 +10,12 @@ package fdi.ucm.server.model.finder.kernel;
 public class FormulaEV extends Formula {
 
 	private static final long serialVersionUID = 1631979871344616552L;
-	private Long Attribute;
-	private String Valor;
+	private Long id;
+	private String v;
 	
 	public FormulaEV() {
-		Attribute=0l;
-		Valor="";
+		id=0l;
+		v="";
 	}
 	
 	/**
@@ -24,8 +24,8 @@ public class FormulaEV extends Formula {
 	 */
 	public FormulaEV(Long attribute, String valor) {
 		super();
-		Attribute = attribute;
-		Valor = valor;
+		id = attribute;
+		v = valor;
 	}
 
 
@@ -33,28 +33,28 @@ public class FormulaEV extends Formula {
 	 * @return the attribute
 	 */
 	public Long getAttribute() {
-		return Attribute;
+		return id;
 	}
 
 	/**
 	 * @param attribute the attribute to set
 	 */
 	public void setAttribute(Long attribute) {
-		Attribute = attribute;
+		id = attribute;
 	}
 
 	/**
 	 * @return the valor
 	 */
 	public String getValor() {
-		return Valor;
+		return v;
 	}
 
 	/**
 	 * @param valor the valor to set
 	 */
 	public void setValor(String valor) {
-		Valor = valor;
+		v = valor;
 	}
 	
 	

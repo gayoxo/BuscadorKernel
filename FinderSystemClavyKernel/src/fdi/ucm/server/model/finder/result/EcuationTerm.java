@@ -12,12 +12,12 @@ import java.util.List;
 public class EcuationTerm implements Serializable{
 
 	private static final long serialVersionUID = 8870884329896048545L;
-	private List<ATerm> PTerm;
-	private List<ATerm> NTerm;
+	private List<ATerm> lp;
+	private List<ATerm> ln;
 	
 	public EcuationTerm() {
-		PTerm=new ArrayList<ATerm>();
-		NTerm=new ArrayList<ATerm>();
+		lp=new ArrayList<ATerm>();
+		ln=new ArrayList<ATerm>();
 	}
 
 	/**
@@ -26,36 +26,36 @@ public class EcuationTerm implements Serializable{
 	 */
 	public EcuationTerm(List<ATerm> pTerm, List<ATerm> nTerm) {
 		super();
-		PTerm = pTerm;
-		NTerm = nTerm;
+		lp = pTerm;
+		ln = nTerm;
 	}
 
 	/**
 	 * @return the pTerm
 	 */
 	public List<ATerm> getPTerm() {
-		return PTerm;
+		return lp;
 	}
 
 	/**
 	 * @param pTerm the pTerm to set
 	 */
 	public void setPTerm(List<ATerm> pTerm) {
-		PTerm = pTerm;
+		lp = pTerm;
 	}
 
 	/**
 	 * @return the nTerm
 	 */
 	public List<ATerm> getNTerm() {
-		return NTerm;
+		return ln;
 	}
 
 	/**
 	 * @param nTerm the nTerm to set
 	 */
 	public void setNTerm(List<ATerm> nTerm) {
-		NTerm = nTerm;
+		ln = nTerm;
 	}
 	
 	

@@ -13,12 +13,12 @@ public class ATerm implements Serializable{
 
 
 	private static final long serialVersionUID = -3509372566712033447L;
-	private Long Attribute;
-	private String Valor;
+	private Long id;
+	private String v;
 	
 	public ATerm() {
-		Attribute=0l;
-		Valor="";
+		id=0l;
+		v="";
 	}
 
 	/**
@@ -27,36 +27,36 @@ public class ATerm implements Serializable{
 	 */
 	public ATerm(Long attribute, String valor) {
 		super();
-		Attribute = attribute;
-		Valor = valor;
+		id = attribute;
+		v = valor;
 	}
 
 	/**
 	 * @return the attribute
 	 */
 	public Long getAttribute() {
-		return Attribute;
+		return id;
 	}
 
 	/**
 	 * @param attribute the attribute to set
 	 */
 	public void setAttribute(Long attribute) {
-		Attribute = attribute;
+		id = attribute;
 	}
 
 	/**
 	 * @return the valor
 	 */
 	public String getValor() {
-		return Valor;
+		return v;
 	}
 
 	/**
 	 * @param valor the valor to set
 	 */
 	public void setValor(String valor) {
-		Valor = valor;
+		v = valor;
 	}
 	
 	

@@ -14,10 +14,10 @@ import java.util.List;
 public class Ecuation implements Serializable{
 
 	private static final long serialVersionUID = 3111145466048154044L;
-	private List<EcuationTerm> partesEcuacion;
+	private List<EcuationTerm> le;
 	
 	public Ecuation() {
-		partesEcuacion=new ArrayList<EcuationTerm>();
+		le=new ArrayList<EcuationTerm>();
 	}
 
 	/**
@@ -25,21 +25,21 @@ public class Ecuation implements Serializable{
 	 */
 	public Ecuation(List<EcuationTerm> partesEcuacion) {
 		super();
-		this.partesEcuacion = partesEcuacion;
+		this.le = partesEcuacion;
 	}
 
 	/**
 	 * @return the partesEcuacion
 	 */
 	public List<EcuationTerm> getPartesEcuacion() {
-		return partesEcuacion;
+		return le;
 	}
 
 	/**
 	 * @param partesEcuacion the partesEcuacion to set
 	 */
 	public void setPartesEcuacion(List<EcuationTerm> partesEcuacion) {
-		this.partesEcuacion = partesEcuacion;
+		this.le = partesEcuacion;
 	}
 	
 	

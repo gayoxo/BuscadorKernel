@@ -1,8 +1,5 @@
 package fdi.ucm.server.model.finder.reduce;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gson.Gson;
 
 import fdi.ucm.server.model.finder.kernel.Formula;
@@ -19,13 +16,13 @@ public class Normalize {
 
 	public static String normalizeIt(Formula entrada)
 	{
-	ArrayList<Ecuation> Salida = new ArrayList<Ecuation>();
+//	ArrayList<Ecuation> Salida = new ArrayList<Ecuation>();
 	
 	
-	norma(entrada,Salida);
+	Ecuation Salida=norma(entrada);
 
-	if (Salida.isEmpty())
-		return null;
+//	if (Salida.isEmpty())
+//		return null;
 	
 	Gson gson = new Gson();
     String jsonString = gson.toJson(Salida);
@@ -41,7 +38,7 @@ public class Normalize {
 
 
 
-	private static ArrayList<Ecuation> norma(Formula formulaIn, ArrayList<Ecuation> entrada) {
+	private static Ecuation norma(Formula formulaIn) {
 		if (formulaIn instanceof FormulaEV)
 		{
 			FormulaEV Act=(FormulaEV)formulaIn;
@@ -50,22 +47,25 @@ public class Normalize {
 			T.getPTerm().add(newT);
 			Ecuation E=new Ecuation();
 			E.getPartesEcuacion().add(T);
-			entrada.add(E);
+			return E;
 			
 		}else if (formulaIn instanceof FormulaOR)
 		{
 			FormulaOR Act=(FormulaOR)formulaIn;
-			norma(Act.getFormula1(),entrada);
-			norma(Act.getFormula2(),entrada);
+			Ecuation entrada1 = norma(Act.getFormula1());
+			Ecuation entrada2= norma(Act.getFormula2());
+			entrada1.getPartesEcuacion().addAll(entrada2.getPartesEcuacion());
+			return entrada1;
+
+			
 		}else if (formulaIn instanceof FormulaAND)
 		{
 			FormulaAND Act=(FormulaAND)formulaIn;
-			ArrayList<Ecuation> E1=new ArrayList<Ecuation>();
-			ArrayList<Ecuation> E2=new ArrayList<Ecuation>();
-			norma(Act.getFormula1(), E1);
-			norma(Act.getFormula2(), E2);
-			List<Ecuation> SalidaT=comb(E1,E2);
-			entrada.addAll(SalidaT);
+			Ecuation E1 = norma(Act.getFormula1());
+			Ecuation E2 = norma(Act.getFormula2());
+			Ecuation SalidaT=comb(E1,E2);
+			return SalidaT;
+			
 		}else if (formulaIn instanceof FormulaNOT)
 		{
 			FormulaNOT Act=(FormulaNOT)formulaIn;
@@ -78,39 +78,39 @@ public class Normalize {
 				T.getNTerm().add(newT);
 				Ecuation E=new Ecuation();
 				E.getPartesEcuacion().add(T);
-				entrada.add(E);
-				return entrada;
+				return E;
 			}else if (ActN instanceof FormulaNOT)
 			{
 				FormulaNOT ActInt2=(FormulaNOT)ActN;
-				norma(ActInt2.getFormula(), entrada);
+				Ecuation E=norma(ActInt2.getFormula());
+				return E;
 			}
 			else  if (ActN instanceof FormulaAND)
 			{
 				FormulaAND ActInt=(FormulaAND)ActN;
 				FormulaNOT nueva1=new FormulaNOT(ActInt.getFormula1());
 				FormulaNOT nueva2=new FormulaNOT(ActInt.getFormula2());
-				norma(nueva1,entrada);
-				norma(nueva2,entrada);
+				Ecuation entrada1 =norma(nueva1);
+				Ecuation entrada2 =norma(nueva2);
+				entrada1.getPartesEcuacion().addAll(entrada2.getPartesEcuacion());
+				return entrada1;
 				
 			}else if (ActN instanceof FormulaOR)
 			{
 				FormulaOR ActInt=(FormulaOR)ActN;
-				ArrayList<Ecuation> E1=new ArrayList<Ecuation>();
-				ArrayList<Ecuation> E2=new ArrayList<Ecuation>();
 				FormulaNOT nueva1=new FormulaNOT(ActInt.getFormula1());
 				FormulaNOT nueva2=new FormulaNOT(ActInt.getFormula2());
-				norma(nueva1, E1);
-				norma(nueva2, E2);
-				List<Ecuation> SalidaT=comb(E1,E2);
-				entrada.addAll(SalidaT);
+				Ecuation E1=norma(nueva1);
+				Ecuation E2=norma(nueva2);
+				Ecuation SalidaT=comb(E1,E2);
+				return SalidaT;
 			}
 				
 			
 			
 		}
 		
-		return entrada;
+		return new Ecuation();
 	}
 
 
@@ -121,14 +121,11 @@ public class Normalize {
 
 
 
-	private static List<Ecuation> comb(ArrayList<Ecuation> e1, ArrayList<Ecuation> e2) {
-		List<Ecuation> Salida=new ArrayList<Ecuation>();
+	private static Ecuation comb(Ecuation e1, Ecuation e2) {
 		Ecuation nueva=new Ecuation();
-		Salida.add(nueva);
-		for (Ecuation ecuation1 : e1) {
-			for (Ecuation ecuation2 : e2) {
-				for (EcuationTerm ecuation1Part : ecuation1.getPartesEcuacion()) {
-					for (EcuationTerm ecuation2Part : ecuation2.getPartesEcuacion()) {
+
+				for (EcuationTerm ecuation1Part : e1.getPartesEcuacion()) {
+					for (EcuationTerm ecuation2Part : e2.getPartesEcuacion()) {
 						EcuationTerm nuevo=new EcuationTerm();
 						nueva.getPartesEcuacion().add(nuevo);
 						for (ATerm term1 : ecuation1Part.getPTerm()) {
@@ -145,13 +142,11 @@ public class Normalize {
 							if (!nuevo.getNTerm().contains(term2))
 								nuevo.getNTerm().add(term2);
 						}
-						
-					}
-				}
+
 				
 			}
 		}
-		return Salida;
+		return nueva;
 	}
 
 

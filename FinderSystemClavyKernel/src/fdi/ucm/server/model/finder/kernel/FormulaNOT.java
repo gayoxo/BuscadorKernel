@@ -8,7 +8,7 @@ package fdi.ucm.server.model.finder.kernel;
 public class FormulaNOT extends Formula {
 
 	private static final long serialVersionUID = -3944187927128675254L;
-	private Formula formula;
+	private Formula f;
 	
 	public FormulaNOT() {
 	}
@@ -18,21 +18,21 @@ public class FormulaNOT extends Formula {
 	 */
 	public FormulaNOT(Formula formula) {
 		super();
-		this.formula = formula;
+		this.f = formula;
 	}
 
 	/**
 	 * @return the formula
 	 */
 	public Formula getFormula() {
-		return formula;
+		return f;
 	}
 
 	/**
 	 * @param formula the formula to set
 	 */
 	public void setFormula(Formula formula) {
-		this.formula = formula;
+		this.f = formula;
 	}
 	
 }
